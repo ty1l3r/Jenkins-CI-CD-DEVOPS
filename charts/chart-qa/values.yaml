@@ -1,0 +1,60 @@
+# ------------------------------------------------------------------------------
+# FastAPI Movie
+# ------------------------------------------------------------------------------
+fastapi_movie:
+  image: jhtyl13r/movie-fastapi
+  tag: "v.${BUILD_ID}.0"
+  containerPort: 8000
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 8000
+    replicas: 3
+    nodePort: 30300
+# ------------------------------------------------------------------------------
+# FastAPI Cast
+# ------------------------------------------------------------------------------
+fastapi_cast:
+  image: jhtyl13r/cast-fastapi
+  tag: "v.${BUILD_ID}.0"
+  containerPort: 8000
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 8000
+    replicas: 3
+    nodePort: 30400
+# ------------------------------------------------------------------------------
+# Postgres Movie
+# ------------------------------------------------------------------------------
+postgres_movie:
+  image: postgres:12.0-alpine
+  port: 5432
+  volumeSize: 512Mi
+  replicas: 1
+# ------------------------------------------------------------------------------
+# Postgres Cast
+# ------------------------------------------------------------------------------
+postgres_cast:
+  image: postgres:12.0-alpine
+  port: 5432
+  volumeSize: 512Mi
+  replicas: 1
+# ------------------------------------------------------------------------------
+# NGINX
+# ------------------------------------------------------------------------------
+nginx:
+  image: nginx:latest
+  ports:
+    containerPort: 8080
+    nodePort: 31201
+
+fastapi:
+  movie:
+    service:
+      port: 8001
+  cast:
+    service:
+      port: 8002
+
+

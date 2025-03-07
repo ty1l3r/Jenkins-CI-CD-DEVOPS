@@ -1,0 +1,84 @@
+# ------------------------------------------------------------------------------
+# FastAPI Movie
+# ------------------------------------------------------------------------------
+fastapi_movie:
+  image: yourimage
+  tag: "v.${BUILD_ID}.0"
+  containerPort: 8000
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 8000
+    replicas: 1
+    nodePort: 30800
+  autoscaling:
+    minReplicas: 1
+    maxReplicas: 6
+    targetCPUUtilizationPercentage: 60
+
+# ------------------------------------------------------------------------------
+# FastAPI Cast
+# ------------------------------------------------------------------------------
+fastapi_cast:
+  image: yourimage
+  tag: "v.${BUILD_ID}.0"
+  containerPort: 8000
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 8000
+    replicas: 1
+    nodePort: 30900
+  autoscaling:
+    minReplicas: 1
+    maxReplicas: 6
+    ttargetCPUUtilizationPercentage: 60
+
+# ------------------------------------------------------------------------------
+# Postgres Movie
+# ------------------------------------------------------------------------------
+postgres_movie:
+  image: postgres:12.0-alpine
+  port: 5432
+  volumeSize: 512Mi
+  replicas: 1
+# ------------------------------------------------------------------------------
+# Postgres Cast
+# ------------------------------------------------------------------------------
+postgres_cast:
+  image: postgres:12.0-alpine
+  port: 5432
+  volumeSize: 512Mi
+  replicas: 1
+# ------------------------------------------------------------------------------
+# NGINX
+# ------------------------------------------------------------------------------
+nginx:
+  image: nginx:latest
+  ports:
+    containerPort: 8080
+    nodePort: 31401
+
+fastapi:
+  movie:
+    service:
+      port: 8001
+  cast:
+    service:
+      port: 8002
+
+# ------------------------------------------------------------------------------
+# Ingress
+# ------------------------------------------------------------------------------
+ingress:
+  name: fastapi-ingress
+  ingressClassName: traefik
+  host: yourdomain.com
+  path: /
+  pathType: Prefix
+  serviceName: fastapi-service
+  servicePort: 80
+  tls:
+    - hosts:
+        - yourdomain.com
+      secretName: mon-certificat-secret

@@ -1,0 +1,101 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+__pypackages__/
+env/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Environnements virtuels
+.venv/
+.venv.bak/
+venv/
+venv.bak/
+env/
+env.bak/
+ENV/
+.env
+
+# Docker
+.docker/
+docker-compose.override.yml
+*.log
+
+# Kubernetes / Helm
+.kube/
+.kubeconfig
+.kubeconfigs/
+*.tgz
+charts/*/charts/
+charts/*/requirements.lock
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Jenkins
+.jenkins/
+jenkins_home/
+values.yml
+values-secret.yml
+.cache_ggshield
+
+# Secrets & fichiers sensibles
+*.env
+*.pem
+*.key
+*.crt
+*.cert
+*.ca
+secrets.*
+secret.*
+*.backup
+*.bak
+
+# Système d’exploitation
+## macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+## Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Fichiers de sauvegarde / éditeurs
+*~
+*.swp
+*.swo
+
+# IDE
+## Visual Studio Code
+.vscode/
